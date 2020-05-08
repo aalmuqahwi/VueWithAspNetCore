@@ -33,16 +33,14 @@
                 forecasts: []
             };
         },
-        created() {
+        async created() {
             this.loading = true;
             this.forecasts = [];
 
-            fetch('api/SampleData/WeatherForecasts')
-                .then(response => response.json())
-                .then(data => {
-                    this.loading = false
-                    this.forecasts = data;
-                });
+            var response = await fetch('api/SampleData/WeatherForecasts');
+            var data = await response.json();
+            this.loading = false;
+            this.forecasts = data;
         }
     }
 </script>
